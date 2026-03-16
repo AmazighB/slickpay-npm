@@ -33,7 +33,7 @@ export default class Account {
                     const status = error.response ? error.response.status : 500;
                     const data = error.response ? error.response.data : null;
                     const statusText = error.response ? error.response.statusText : error.message;
-                    reject(core.response(status, data, statusText));
+                    resolve(core.response(status, data, statusText));
                 });
 
         });
@@ -63,7 +63,7 @@ export default class Account {
                     const status = error.response ? error.response.status : 500;
                     const data = error.response ? error.response.data : null;
                     const statusText = error.response ? error.response.statusText : error.message;
-                    reject(core.response(status, data, statusText));
+                    resolve(core.response(status, data, statusText));
                 });
 
         });
@@ -98,7 +98,7 @@ export default class Account {
                     const status = error.response ? error.response.status : 500;
                     const data = error.response ? error.response.data : null;
                     const statusText = error.response ? error.response.statusText : error.message;
-                    reject(core.response(status, data, statusText));
+                    resolve(core.response(status, data, statusText));
                 });
 
         });
@@ -129,7 +129,7 @@ export default class Account {
                     const status = error.response ? error.response.status : 500;
                     const data = error.response ? error.response.data : null;
                     const statusText = error.response ? error.response.statusText : error.message;
-                    reject(core.response(status, data, statusText));
+                    resolve(core.response(status, data, statusText));
                 });
 
         });
@@ -159,7 +159,7 @@ export default class Account {
                     const status = error.response ? error.response.status : 500;
                     const data = error.response ? error.response.data : null;
                     const statusText = error.response ? error.response.statusText : error.message;
-                    reject(core.response(status, data, statusText));
+                    resolve(core.response(status, data, statusText));
                 });
 
         });
