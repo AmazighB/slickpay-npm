@@ -17,11 +17,12 @@ export default class Invoice {
      */
     commission(amount) {
 
-        return new Promise(async (resolve, reject) => {
+        return new Promise(async (resolve) => {
 
             const core = new Core(this.publicKey, this.sandbox);
 
-            await axios.post(core.url(`users/invoices`), {
+            // Fix: was pointing to 'users/invoices' instead of 'users/invoices/commission'
+            await axios.post(core.url(`users/invoices/commission`), {
                 amount: amount
             }, {
                 headers: {
@@ -35,7 +36,8 @@ export default class Invoice {
                     const status = error.response ? error.response.status : 500;
                     const data = error.response ? error.response.data : null;
                     const statusText = error.response ? error.response.statusText : error.message;
-                    reject(core.response(status, data, statusText));
+                    // Fix: resolve instead of reject so callers can check result.errors
+                    resolve(core.response(status, data, statusText));
                 });
 
         });
@@ -49,7 +51,7 @@ export default class Invoice {
      */
     store(data) {
 
-        return new Promise(async (resolve, reject) => {
+        return new Promise(async (resolve) => {
 
             const core = new Core(this.publicKey, this.sandbox);
 
@@ -65,7 +67,8 @@ export default class Invoice {
                     const status = error.response ? error.response.status : 500;
                     const data = error.response ? error.response.data : null;
                     const statusText = error.response ? error.response.statusText : error.message;
-                    reject(core.response(status, data, statusText));
+                    // Fix: resolve instead of reject so callers can check result.errors
+                    resolve(core.response(status, data, statusText));
                 });
 
         });
@@ -79,7 +82,7 @@ export default class Invoice {
      */
     show(id) {
 
-        return new Promise(async (resolve, reject) => {
+        return new Promise(async (resolve) => {
 
             const core = new Core(this.publicKey, this.sandbox);
 
@@ -95,7 +98,7 @@ export default class Invoice {
                     const status = error.response ? error.response.status : 500;
                     const data = error.response ? error.response.data : null;
                     const statusText = error.response ? error.response.statusText : error.message;
-                    reject(core.response(status, data, statusText));
+                    resolve(core.response(status, data, statusText));
                 });
 
         });
@@ -104,12 +107,13 @@ export default class Invoice {
     /**
      * Get a listing of the user invoice.
      *
-     * @param {number} id
+     * @param {number} offset
+     * @param {number} page
      * @returns Promise
      */
     index(offset = 0, page = 1) {
 
-        return new Promise(async (resolve, reject) => {
+        return new Promise(async (resolve) => {
 
             const core = new Core(this.publicKey, this.sandbox);
 
@@ -130,7 +134,7 @@ export default class Invoice {
                     const status = error.response ? error.response.status : 500;
                     const data = error.response ? error.response.data : null;
                     const statusText = error.response ? error.response.statusText : error.message;
-                    reject(core.response(status, data, statusText));
+                    resolve(core.response(status, data, statusText));
                 });
 
         });
@@ -145,7 +149,7 @@ export default class Invoice {
      */
     update(id, data) {
 
-        return new Promise(async (resolve, reject) => {
+        return new Promise(async (resolve) => {
 
             const core = new Core(this.publicKey, this.sandbox);
 
@@ -161,7 +165,7 @@ export default class Invoice {
                     const status = error.response ? error.response.status : 500;
                     const data = error.response ? error.response.data : null;
                     const statusText = error.response ? error.response.statusText : error.message;
-                    reject(core.response(status, data, statusText));
+                    resolve(core.response(status, data, statusText));
                 });
 
         });
@@ -175,7 +179,7 @@ export default class Invoice {
      */
     destroy(id) {
 
-        return new Promise(async (resolve, reject) => {
+        return new Promise(async (resolve) => {
 
             const core = new Core(this.publicKey, this.sandbox);
 
@@ -191,7 +195,7 @@ export default class Invoice {
                     const status = error.response ? error.response.status : 500;
                     const data = error.response ? error.response.data : null;
                     const statusText = error.response ? error.response.statusText : error.message;
-                    reject(core.response(status, data, statusText));
+                    resolve(core.response(status, data, statusText));
                 });
 
         });
