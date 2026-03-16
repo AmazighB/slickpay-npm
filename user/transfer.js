@@ -21,7 +21,7 @@ export default class Transfer {
 
             const core = new Core(this.publicKey, this.sandbox);
 
-            await axios.post(core.url(`users/transfers`), {
+            await axios.post(core.url(`users/transfers/commission`), {
                 amount: amount
             }, {
                 headers: {
@@ -35,7 +35,7 @@ export default class Transfer {
                     const status = error.response ? error.response.status : 500;
                     const data = error.response ? error.response.data : null;
                     const statusText = error.response ? error.response.statusText : error.message;
-                    reject(core.response(status, data, statusText));
+                    resolve(core.response(status, data, statusText));
                 });
 
         });
@@ -65,7 +65,7 @@ export default class Transfer {
                     const status = error.response ? error.response.status : 500;
                     const data = error.response ? error.response.data : null;
                     const statusText = error.response ? error.response.statusText : error.message;
-                    reject(core.response(status, data, statusText));
+                    resolve(core.response(status, data, statusText));
                 });
 
         });
@@ -95,7 +95,7 @@ export default class Transfer {
                     const status = error.response ? error.response.status : 500;
                     const data = error.response ? error.response.data : null;
                     const statusText = error.response ? error.response.statusText : error.message;
-                    reject(core.response(status, data, statusText));
+                    resolve(core.response(status, data, statusText));
                 });
 
         });
@@ -130,7 +130,7 @@ export default class Transfer {
                     const status = error.response ? error.response.status : 500;
                     const data = error.response ? error.response.data : null;
                     const statusText = error.response ? error.response.statusText : error.message;
-                    reject(core.response(status, data, statusText));
+                    resolve(core.response(status, data, statusText));
                 });
 
         });
@@ -161,7 +161,7 @@ export default class Transfer {
                     const status = error.response ? error.response.status : 500;
                     const data = error.response ? error.response.data : null;
                     const statusText = error.response ? error.response.statusText : error.message;
-                    reject(core.response(status, data, statusText));
+                    resolve(core.response(status, data, statusText));
                 });
 
         });
@@ -191,7 +191,7 @@ export default class Transfer {
                     const status = error.response ? error.response.status : 500;
                     const data = error.response ? error.response.data : null;
                     const statusText = error.response ? error.response.statusText : error.message;
-                    reject(core.response(status, data, statusText));
+                    resolve(core.response(status, data, statusText));
                 });
 
         });
