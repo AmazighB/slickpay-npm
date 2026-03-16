@@ -14,18 +14,20 @@ export default class Core {
     }
 
     response(status, data, error) {
-        var failed = false;
-
-        if (
-            (data && data.errors) ||
-            [401, 500].includes(status)
-        ) failed = true;
+        // Consider any 4xx or 5xx status as failed (not just 401 and 500)
+        var failed = (data && data.errors) || status >= 400;
 
         const response = {
             data: !failed ? data : null,
             status: status,
-            errors: failed ? (data && data.errors ? data.errors : (data && data.message ? { server: [data.message] } : { server: [error] } )) : null,
-        }
+            errors: failed
+                ? (data && data.errors
+                    ? data.errors
+                    : (data && data.message
+                        ? { server: [data.message] }
+                        : { server: [error] }))
+                : null,
+        };
 
         if (!failed && response.data) Object.assign(response, response.data);
         if (!failed && response.data && response.data.data) delete response.data.data;
